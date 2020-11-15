@@ -15,6 +15,7 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator;
 
@@ -22,6 +23,7 @@ import utils.EMF_Creator;
  *
  * @author Frederik Dahl <cph-fd76@cphbusiness.dk>
  */
+@Disabled
 public class JokeResourceTest {
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/jpareststarter/api";

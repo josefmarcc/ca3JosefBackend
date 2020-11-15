@@ -20,6 +20,7 @@ import utils.EMF_Creator;
  *
  * @author Frederik Dahl <cph-fd76@cphbusiness.dk>
  */
+@Disabled
 public class UserFacadeTest {
 
     private static EntityManagerFactory emf;
