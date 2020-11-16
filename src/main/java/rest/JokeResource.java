@@ -1,5 +1,6 @@
 package rest;
 
+import DTO.SavedJokeDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entities.SavedJoke;
@@ -30,6 +31,7 @@ public class JokeResource {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     private ExecutorService es = Executors.newCachedThreadPool();
+    private static final JokeFacade jf = JokeFacade.getJokeFacade(EMF);
 
     @Context
     private UriInfo context;
@@ -44,11 +46,14 @@ public class JokeResource {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     public String saveJoke(String joke) {
-
-        SavedJoke sj = gson.fromJson(joke, SavedJoke.class);
-        JokeFacade.getJokeFacade(EMF).saveJoke(sj.getJoke());
-
-        return sj.getJoke();
+        
+       SavedJoke sj = gson.fromJson(joke, SavedJoke.class);
+       SavedJokeDTO sjDTO = new SavedJokeDTO(sj);
+        
+        System.out.println(sjDTO);
+        jf.saveJoke(sjDTO.getTheJoke());
+        
+        return "Joke added";
     }
 
 }
